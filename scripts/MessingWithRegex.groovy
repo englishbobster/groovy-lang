@@ -41,3 +41,33 @@ assert third == 'hands'
 
 //replace all words ending in s
 println(testSentence.replaceAll(regex, "bollox"))
+
+//matcher with and without groupings
+def withOutGroups = ('a:1 b:2 c:3' =~ /\S+:\S+/)
+def groups = ('a:1 b:2 c:3' =~ /(\S+):(\S+)/)
+
+assert !withOutGroups.hasGroup()
+assert groups.hasGroup()
+
+println(withOutGroups[0])
+println(withOutGroups[1])
+println(withOutGroups[2])
+println(groups[0])
+println(groups[1])
+println(groups[2])
+println(groups[1][2])
+
+//~string precompiled and using regex for classification in groovy
+//words that are 4 letters long. Note not =~(find operator) but = ~ (whitespace between)... compiled pattern
+def fourletters = ~/\w{4}/
+assert fourletters.isCase('work')
+//use in
+assert 'love' in fourletters
+//use switch
+switch ('beer') {
+  case fourletters: assert true; break
+  default: assert false
+}
+//grep is beautiful
+beasts = ['bear', 'tiger' ,'wolf', 'regex']
+assert beasts.grep(fourletters) == ['bear', 'wolf']
