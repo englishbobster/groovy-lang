@@ -129,6 +129,16 @@ assert glist.every { item ->
   item < 6
 }
 
+//remember that you cant modify and iterate at the same time
+def hList = [1,2,3,4]
+try {
+  hList.each {
+    hList.remove(0)
+  }
+} catch (ConcurrentModificationException e) {
+  assert true
+}
+
 
 // and a hack
 // just a little program to convert km/h to min/km
