@@ -55,4 +55,3 @@ class ListCtr {
 ListCtr listCtr = ["sigh", "sing"]
 assert listCtr.big == "sigh"
 assert listCtr.small == "sing"
-
